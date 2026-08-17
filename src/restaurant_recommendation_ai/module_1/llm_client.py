@@ -1,5 +1,7 @@
-import ollama
 import time
+
+import ollama
+
 
 def llm_model(system_msg, prompt_txt):
     """
@@ -30,14 +32,11 @@ def llm_model(system_msg, prompt_txt):
     return output_text
 
 
-def  safe_llm_call(system_msg, prompt_txt, retries=3) :
+def safe_llm_call(system_msg, prompt_txt, retries: int = 3):
+    for i in range(retries):
+        try:
+            return llm_model(system_msg, prompt_txt)
+        except Exception as e:  # noqa: BLE001
+            print(f"llm call attempt {i+1} failed: {e}")
+            time.sleep(2)
 
-    for i in range(retries = 3) :
-
-        try: 
-            return llm_model(system_msg , prompt_txt)
-        except Exception :
-
-            time.sleep(2) 
-
-    return "Failed after retries"       

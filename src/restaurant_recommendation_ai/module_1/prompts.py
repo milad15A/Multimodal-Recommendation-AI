@@ -1,4 +1,4 @@
-EXAMPLE_RESTAURANT_PARAGRAPH = restaurant_list[1]
+
 
 EXAMPLE_OUTPUT = """
 {
@@ -19,7 +19,7 @@ EXAMPLE_OUTPUT = """
 """
 
 
-def restaurant_data_structure_prompt_generation(restaurant_paragraph):
+def restaurant_data_structure_prompt_generation(restaurant_paragraph , example_restaurant_paragraph):
 
     base_system_msg = """
     You are an expert restaurant information extraction assistant.
@@ -42,7 +42,7 @@ def restaurant_data_structure_prompt_generation(restaurant_paragraph):
 
     Example:
     Input Restaurant Description:
-    {EXAMPLE_RESTAURANT_PARAGRAPH}
+    {example_restaurant_paragraph}
 
     Output:
     {EXAMPLE_OUTPUT}
@@ -51,3 +51,30 @@ def restaurant_data_structure_prompt_generation(restaurant_paragraph):
     """
 
     return base_system_msg, base_user_prompt
+
+
+def JSON_auto_repair_prompts(candidate_json_output, error_message):
+
+    auto_repair_system_msg = """
+    You are an expert JSON repair assistant.
+    Your task is to correct invalid JSON output based on
+    the validation error provided.
+    Return only valid JSON.
+    Do not add explanations or additional text.
+    """
+
+    auto_repair_prompt = f"""
+    The following JSON output is invalid:
+
+    {candidate_json_output}
+
+    The validation error is:
+
+    {error_message}
+
+    Correct the JSON output according to the validation error.
+    Preserve the original information whenever possible.
+    Return only the corrected JSON object.
+    """
+
+    return auto_repair_system_msg, auto_repair_prompt
