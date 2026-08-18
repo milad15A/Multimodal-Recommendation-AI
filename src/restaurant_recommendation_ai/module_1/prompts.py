@@ -1,5 +1,3 @@
-
-
 EXAMPLE_OUTPUT = """
 {
     "name": "Mar de Cortez",
@@ -19,7 +17,9 @@ EXAMPLE_OUTPUT = """
 """
 
 
-def restaurant_data_structure_prompt_generation(restaurant_paragraph , example_restaurant_paragraph):
+def restaurant_data_structure_prompt_generation(
+    restaurant_paragraph, example_restaurant_paragraph
+):
 
     base_system_msg = """
     You are an expert restaurant information extraction assistant.

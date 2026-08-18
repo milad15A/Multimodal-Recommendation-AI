@@ -12,20 +12,11 @@ def llm_model(system_msg, prompt_txt):
     model_id = "llama3.1:8b"
 
     messages = [
-        {
-            "role": "system",
-            "content": system_msg
-        },
-        {
-            "role": "user",
-            "content": prompt_txt
-        }
+        {"role": "system", "content": system_msg},
+        {"role": "user", "content": prompt_txt},
     ]
 
-    response = ollama.chat(
-        model=model_id,
-        messages=messages
-    )
+    response = ollama.chat(model=model_id, messages=messages)
 
     output_text = response["message"]["content"]
 
@@ -37,6 +28,5 @@ def safe_llm_call(system_msg, prompt_txt, retries: int = 3):
         try:
             return llm_model(system_msg, prompt_txt)
         except Exception as e:  # noqa: BLE001
-            print(f"llm call attempt {i+1} failed: {e}")
+            print(f"llm call attempt {i + 1} failed: {e}")
             time.sleep(2)
-

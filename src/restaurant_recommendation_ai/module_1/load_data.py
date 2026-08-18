@@ -3,9 +3,7 @@ from pathlib import Path
 
 def load_restaurant_data():
 
-    file_path = Path(
-        "data/raw/California-Culinary-Map.txt"
-    )
+    file_path = Path("data/raw/California-Culinary-Map.txt")
 
     with open(file_path, "r", encoding="utf-8") as file:
         data = file.read()

@@ -21,19 +21,14 @@ example_restaurant_paragraph = restaurant_list[1]
 
 
 # Generate prompt
-base_system_msg, base_user_prompt = (
-    restaurant_data_structure_prompt_generation(
-        restaurant_paragraph=restaurant_paragraph,
-        example_restaurant_paragraph=example_restaurant_paragraph
-    )
+base_system_msg, base_user_prompt = restaurant_data_structure_prompt_generation(
+    restaurant_paragraph=restaurant_paragraph,
+    example_restaurant_paragraph=example_restaurant_paragraph,
 )
 
 
 # Test LLM
-test_response = llm_model(
-    system_msg=base_system_msg,
-    prompt_txt=base_user_prompt
-)
+test_response = llm_model(system_msg=base_system_msg, prompt_txt=base_user_prompt)
 
 restaurant_data = validate_restaurant(test_response)
 
