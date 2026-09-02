@@ -27,3 +27,7 @@ __pycache__/
 
 # Ruff
 .ruff_cache/
+
+# Logs
+logs/
+*.log
